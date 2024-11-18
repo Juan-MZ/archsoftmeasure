@@ -1,8 +1,12 @@
 package co.unicauca.archsoftmeasure.answer.model;
 
+import co.unicauca.archsoftmeasure.measurement.model.Measurement;
 import co.unicauca.archsoftmeasure.question.model.Question;
+import co.unicauca.archsoftmeasure.scale.model.Scale;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,10 +22,16 @@ public class Answer {
     @Column(name = "answer_id")
     private Integer answerId;
 
-    @Column(name = "answer_statement")
+    @Column(name = "answer_statement", nullable = false)
     private String statement;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "answer_question")
     private Question question;
+
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    private List<Scale> scales;
+
+    @ManyToMany(mappedBy = "answers")
+    private List<Measurement> measurements;
 }

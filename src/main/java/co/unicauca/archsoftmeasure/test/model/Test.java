@@ -1,5 +1,6 @@
 package co.unicauca.archsoftmeasure.test.model;
 
+import co.unicauca.archsoftmeasure.measurement.model.Measurement;
 import co.unicauca.archsoftmeasure.question.model.Question;
 import jakarta.persistence.*;
 import lombok.*;
@@ -22,6 +23,9 @@ public class Test {
 
     @Column(name = "test_name")
     private String name;
+
+    @OneToMany(mappedBy = "test")
+    private List<Measurement> measurement;
 
     @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
     private List<Question> questions;

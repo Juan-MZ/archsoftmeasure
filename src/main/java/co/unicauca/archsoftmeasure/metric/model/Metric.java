@@ -1,7 +1,11 @@
 package co.unicauca.archsoftmeasure.metric.model;
 
+import co.unicauca.archsoftmeasure.scale.model.Scale;
+import co.unicauca.archsoftmeasure.metric.section.model.Section;
 import jakarta.persistence.*;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -18,5 +22,16 @@ public class Metric {
     @Column(name = "metric_id")
     private Integer metricId;
 
+    @Column(name = "metric_name", unique = true, nullable = false)
     private String name;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "metric_section")
+    private Section section;
+
+    @OneToMany(mappedBy = "metric")
+    private List<Scale> scales;
+
+
+
 }
