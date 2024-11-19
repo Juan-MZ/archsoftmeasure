@@ -30,6 +30,4 @@ public class Scale {
 
     @ManyToMany(mappedBy = "scales")
     List<Answer> answers;
-
-
 }

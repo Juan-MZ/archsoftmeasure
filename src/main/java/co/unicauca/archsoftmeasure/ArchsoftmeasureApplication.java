@@ -8,6 +8,7 @@ public class ArchsoftmeasureApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(ArchsoftmeasureApplication.class, args);
+		System.out.println("Inicio de ArchSoftMeasure");
 	}
 
 }
