@@ -2,6 +2,7 @@ package co.unicauca.archsoftmeasure.metric.controller;
 
 import co.unicauca.archsoftmeasure.metric.dominio.response.MetricResponseDTO;
 import co.unicauca.archsoftmeasure.metric.services.IMetricService;
+import co.unicauca.archsoftmeasure.util.response.Response;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -18,12 +19,12 @@ public class MetricController {
     }
 
     @GetMapping("/getAllMetrics")
-    public List<MetricResponseDTO> getAllMetrics() {
+    public Response<List<MetricResponseDTO>> getAllMetrics() {
         return iMetricService.getAllMetrics();
     }
 
     @GetMapping("getAllMetricsBySection/{sectionId}")
-    public List<MetricResponseDTO> getAllMetricsBySection(@PathVariable final Integer sectionId) {
+    public Response<List<MetricResponseDTO>> getAllMetricsBySection(@PathVariable final Integer sectionId) {
         return iMetricService.getAllMetricsBySection(sectionId);
     }
 }

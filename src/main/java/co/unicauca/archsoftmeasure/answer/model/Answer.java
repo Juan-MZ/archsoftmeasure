@@ -25,7 +25,7 @@ public class Answer {
     @Column(name = "answer_statement", nullable = false)
     private String statement;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     @JoinColumn(name = "answer_question")
     private Question question;
 

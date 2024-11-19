@@ -27,7 +27,7 @@ public class Test {
     @OneToMany(mappedBy = "test")
     private List<Measurement> measurement;
 
-    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.PERSIST)
     private List<Question> questions;
 
 }

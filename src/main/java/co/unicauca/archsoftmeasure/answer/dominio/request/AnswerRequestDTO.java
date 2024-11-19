@@ -1,4 +1,4 @@
-package co.unicauca.archsoftmeasure.metric.dominio.response;
+package co.unicauca.archsoftmeasure.answer.dominio.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,6 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class MetricResponseDTO {
-    private Integer metricId;
-    private String name;
+public class AnswerRequestDTO {
+    private String statement;
 }

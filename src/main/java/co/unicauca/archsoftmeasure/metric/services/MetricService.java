@@ -6,6 +6,8 @@ import co.unicauca.archsoftmeasure.metric.repository.IMetricRepository;
 import co.unicauca.archsoftmeasure.metric.section.model.Section;
 import co.unicauca.archsoftmeasure.metric.section.repository.ISectionRepository;
 import co.unicauca.archsoftmeasure.util.exception.ServiceRuleException;
+import co.unicauca.archsoftmeasure.util.response.Response;
+import co.unicauca.archsoftmeasure.util.response.handler.ResponseHandler;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
@@ -27,27 +29,29 @@ public class MetricService implements IMetricService {
     }
 
     @Override
-    public List<MetricResponseDTO> getAllMetrics() {
+    public Response<List<MetricResponseDTO>> getAllMetrics() {
         List<Metric> metrics = iMetricRepository.findAll();
         if (metrics.isEmpty()) {
             throw new ServiceRuleException("there.arent.registered.metrics");
         }
 
-        return metrics.stream()
+        List<MetricResponseDTO> sectionResponseDTOS = metrics.stream()
                 .map(metric -> modelMapper.map(metric, MetricResponseDTO.class))
                 .toList();
+        return new ResponseHandler<>(200,"Métricas encontradas con éxito.","http://localhost:8080/metric/getAllMetrics",sectionResponseDTOS).getResponse();
     }
 
     @Override
-    public List<MetricResponseDTO> getAllMetricsBySection(Integer sectionId) {
+    public Response<List<MetricResponseDTO>> getAllMetricsBySection(Integer sectionId) {
         Optional<Section> sectionOptional = iSectionRepository.findById(sectionId);
         if (sectionOptional.isEmpty()) {
             throw new ServiceRuleException("section.is.not.found");
         }
         List<Metric> metrics = iMetricRepository.findAllBySection(sectionOptional.get());
 
-        return metrics.stream()
+        List<MetricResponseDTO> sectionResponseDTOS = metrics.stream()
                 .map(metric -> modelMapper.map(metric, MetricResponseDTO.class))
                 .toList();
+        return new ResponseHandler<>(200,"Métricas encontradas con éxito.","http://localhost:8080/metric/getAllMetricsBySection/{sectionId}",sectionResponseDTOS).getResponse();
     }
 }
