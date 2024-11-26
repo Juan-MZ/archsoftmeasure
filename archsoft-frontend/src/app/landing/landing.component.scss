@@ -1,18 +1,22 @@
 /* General Styles */
-body {
-  margin: 0;
-  font-family: 'Poppins', sans-serif;
-  color: #ffffff;
-  background: linear-gradient(to bottom, #000, #111);
-}
-
 .landing-container {
-  text-align: center;
-  padding: 20px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .header {
-  margin-bottom: 50px;
+  margin-bottom: 10px;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-left: 10px;
+  margin: 0;
 }
 
 .title {
@@ -32,6 +36,12 @@ body {
   display: flex;
   justify-content: center;
   gap: 20px;
+}
+
+.button-container {
+  align-self: center;
+  margin-top: 10%;
+  margin-bottom: 10%;
 }
 
 .action-button {
@@ -60,7 +70,7 @@ body {
 
 /* Footer */
 .footer {
-  margin-top: 50px;
+  text-align: center;
   font-size: 0.8rem;
   color: #a9c4d9;
 }

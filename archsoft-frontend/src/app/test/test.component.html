@@ -1,1 +1,35 @@
-<p>test works!</p>
+<div class="test-container" *ngIf="test">
+  <h1 class="test-title">{{ test.name }}</h1>
+  <p class="test-info">ID del examen: {{ test.testId }}</p>
+  <div class="form-container">
+    <form #testForm="ngForm" (ngSubmit)="submitAnswers()" class="question-form">
+      <div *ngFor="let question of test.questions; let i = index" class="question-container">
+        <h3 class="question-title">{{ i + 1 }}. {{ question.statement }}</h3>
+        <div *ngIf="question.answers.length > 0" class="answers">
+          <div *ngFor="let answer of question.answers" class="answer-option">
+            <input
+              type="radio"
+              id="q{{ i }}_{{ answer.answerId }}"
+              name="q{{ i }}"
+              [value]="answer.answerId"
+              [(ngModel)]="selectedAnswers[i]"
+              required
+            />
+            <label for="q{{ i }}_{{ answer.answerId }}">{{ answer.statement }}</label>
+          </div>
+        </div>
+        <div *ngIf="question.answers.length === 0" class="no-answers">
+          <p class="no-answers-text">No hay respuestas disponibles para esta pregunta.</p>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="submit" class="submit-button" [disabled]="!testForm.valid">
+          Enviar Respuestas
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+<div *ngIf="!test" class="loading-container">
+  <p class="loading-text">Cargando examen...</p>
+</div>

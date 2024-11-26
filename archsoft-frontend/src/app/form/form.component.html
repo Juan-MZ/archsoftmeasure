@@ -1,0 +1,12 @@
+<div class="form-container">
+  <h1>Bienvenido a nuestro test</h1>
+  <form id="emailForm">
+    <div class="form-group">
+      <label for="email">Correo Electrónico:</label>
+      <input id="emailInput" type="email" [(ngModel)]="email" id="email" name="email" placeholder="Ingrese su correo" required>
+    </div>
+    <div class="form-actions">
+      <button type="submit" (click)="createMeasurement()">Enviar</button>
+    </div>
+  </form>
+</div>

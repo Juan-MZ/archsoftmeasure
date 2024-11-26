@@ -1,0 +1,77 @@
+app-form {
+  display: flex;
+  flex-direction: row;
+  justify-content: center; /* Centrar horizontalmente */
+  align-items: center; /* Centrar verticalmente */
+  min-height: 100vh; /* Altura mínima del viewport */
+  padding: 20px; /* Espaciado adicional en pantallas pequeñas */
+  background-color: #121212; /* Fondo oscuro */
+  box-sizing: border-box;
+}
+
+/* Contenedor del formulario */
+.form-container {
+  display: flex;
+  flex-direction: column;
+  background-color: #1e1e2f; /* Fondo azul oscuro */
+  padding: 20px 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  max-width: 750px; /* Ancho máximo fijo */
+  min-width: 380px;
+  margin: auto;
+  width: auto; /* Ocupa el 100% del ancho disponible */
+  box-sizing: border-box; /* Incluye el padding en el ancho */
+}
+
+.form-container h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #00d2ca; /* Verde llamativo */
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  font-weight: bold;
+  color: #f0f0f0;
+  margin-bottom: 5px;
+}
+
+.form-group input {
+  width: 95%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #2a2a3e;
+  color: #f0f0f0;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #00d2ca;
+  box-shadow: 0 0 5px #00d2ca;
+}
+
+.form-actions {
+  text-align: center;
+}
+
+.form-actions button {
+  background-color: #00d2ca;
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 1rem;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.form-actions button:hover {
+  background-color: #45a049;
+}

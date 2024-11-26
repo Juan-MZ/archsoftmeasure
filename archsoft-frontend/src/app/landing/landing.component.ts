@@ -1,4 +1,5 @@
-import { Component, OnInit} from '@angular/core';
+import { Component} from '@angular/core';
+import {Router} from '@angular/router';
 import {ApiService} from "../service/api.service";
 
 @Component({
@@ -7,18 +8,12 @@ import {ApiService} from "../service/api.service";
   styleUrl: './landing.component.scss',
   providers: [ApiService]
 })
-export class LandingComponent implements OnInit {
+export class LandingComponent {
   data: any = {};
-  constructor(private apiService: ApiService) {}
+  constructor(private apiService: ApiService, private router: Router) {}
 
-  ngOnInit(): void {
-    this.getData()
-  }
-
-  getData(){
-    this.apiService.getMetrics().subscribe(data => {
-      this.data = data;
-      console.log(this.data)
-    })
+  // Método para redirigir
+  presentTest() {
+    this.router.navigate(['form']); // Navega a form
   }
 }

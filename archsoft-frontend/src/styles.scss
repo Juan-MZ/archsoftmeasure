@@ -1,1 +1,17 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%; /* Permite que el body ocupe todo el alto de la ventana */
+  margin: 0; /* Elimina los márgenes que podrían causar desbordamiento */
+  padding: 0;
+  overflow-y: clip;
+}
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: 'Poppins', sans-serif;
+  background: rgb(2,6,69);
+  background: linear-gradient(0deg, rgba(2,6,69,1) 30%, rgba(0,0,0,1) 60%);
+  background-attachment: fixed;
+}
