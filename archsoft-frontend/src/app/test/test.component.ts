@@ -48,7 +48,7 @@ export class TestComponent implements OnInit {
     this.apiService.sumbitMeasurement(answers, this.measurementId).subscribe(
       (response) => {
         console.log('Respuestas enviadas:', response);
-        alert('Respuestas enviadas exitosamente');
+        alert(response.userMessage);
         this.router.navigate(['']);
       },
       (error) => {

@@ -31,9 +31,6 @@ public class Measurement {
     @Column(name = "final_date_time")
     private LocalDateTime finalDateTime;
 
-    @Column(name = "global_score")
-    private Double globalScore;
-
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "measurement_test")
     private Test test;

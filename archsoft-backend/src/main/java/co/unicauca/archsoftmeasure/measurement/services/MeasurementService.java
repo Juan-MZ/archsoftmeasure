@@ -5,8 +5,15 @@ import co.unicauca.archsoftmeasure.answer.repository.IAnswerRepository;
 import co.unicauca.archsoftmeasure.measurement.dominio.request.MeasurementRequestDTO;
 import co.unicauca.archsoftmeasure.measurement.dominio.request.MeasurementSendAnswersDTO;
 import co.unicauca.archsoftmeasure.measurement.dominio.response.MeasurementResponseDTO;
+import co.unicauca.archsoftmeasure.measurement.dominio.response.ScoresResponseDTO;
 import co.unicauca.archsoftmeasure.measurement.model.Measurement;
 import co.unicauca.archsoftmeasure.measurement.repository.IMeasurementRepository;
+import co.unicauca.archsoftmeasure.metric.model.Metric;
+import co.unicauca.archsoftmeasure.metric.repository.IMetricRepository;
+import co.unicauca.archsoftmeasure.metric.section.model.Section;
+import co.unicauca.archsoftmeasure.metric.section.repository.ISectionRepository;
+import co.unicauca.archsoftmeasure.scale.model.Scale;
+import co.unicauca.archsoftmeasure.scale.repository.IScaleRepository;
 import co.unicauca.archsoftmeasure.test.model.Test;
 import co.unicauca.archsoftmeasure.test.repository.ITestRepository;
 import co.unicauca.archsoftmeasure.util.exception.ServiceRuleException;
@@ -24,13 +31,17 @@ import java.util.Optional;
 public class MeasurementService implements IMeasurementService {
     private final IMeasurementRepository iMeasurementRepository;
     private final ITestRepository iTestRepository;
+    private final ISectionRepository iSectionRepository;
     private final IAnswerRepository iAnswerRepository;
+    private final IScaleRepository iScaleRepository;
     private final ModelMapper modelMapper;
 
-    public MeasurementService(IMeasurementRepository iMeasurementRepository, ITestRepository iTestRepository, IAnswerRepository iAnswerRepository, ModelMapper modelMapper) {
+    public MeasurementService(IMeasurementRepository iMeasurementRepository, ITestRepository iTestRepository, ISectionRepository iSectionRepository, IAnswerRepository iAnswerRepository, IScaleRepository iScaleRepository, ModelMapper modelMapper) {
         this.iMeasurementRepository = iMeasurementRepository;
         this.iTestRepository = iTestRepository;
+        this.iSectionRepository = iSectionRepository;
         this.iAnswerRepository = iAnswerRepository;
+        this.iScaleRepository = iScaleRepository;
         this.modelMapper = modelMapper;
     }
 
@@ -43,6 +54,7 @@ public class MeasurementService implements IMeasurementService {
 
         Measurement measurement = new Measurement();
         measurement.setMail(mail);
+        measurement.setTest(test.get());
         measurement.setStartDateTime(LocalDateTime.now());
 
         MeasurementResponseDTO measurementResponseDTO = modelMapper.map(iMeasurementRepository.save(measurement), MeasurementResponseDTO.class);
@@ -77,6 +89,42 @@ public class MeasurementService implements IMeasurementService {
         MeasurementResponseDTO measurementResponseDTO = modelMapper.map(iMeasurementRepository.save(measurementEntity), MeasurementResponseDTO.class);
 
         return new ResponseHandler<>(200,"Las respuestas han sido enviadas exitosamente.","http://localhost:8080/measurement/sendAnswersToMeasurement/{measurementId}",measurementResponseDTO).getResponse();
+    }
+
+    @Override
+    public Response<ScoresResponseDTO> calculateScores(Integer measurementId) {
+        Optional<Measurement> measurement = iMeasurementRepository.findById(measurementId);
+        if(measurement.isEmpty()) {
+            throw new ServiceRuleException("measurement.is.not.found");
+        }
+        Measurement measurementEntity = measurement.get();
+        ScoresResponseDTO scoresResponseDTO = new ScoresResponseDTO();
+        scoresResponseDTO.setMetricScores(new ArrayList<>());
+        scoresResponseDTO.setSectionScores(new ArrayList<>());
+        List<Section> sections = this.iSectionRepository.findAll();
+
+        for(Section section : sections) {
+            List<Double> metricScoresAux = new ArrayList<>();
+            for(Metric metric : section.getMetrics()) {
+                List<Double> scales = new ArrayList<>();
+                for(Answer answer : measurementEntity.getAnswers()) {
+                    Optional<Scale> scale = this.iScaleRepository.findByMetricAndAnswersContains(metric, answer);
+                    scale.ifPresent(value -> scales.add(value.getPercentage()));
+                }
+                Double metricScore = scales.stream()
+                        .mapToDouble(Double::doubleValue) // Convertir a DoubleStream
+                        .filter(score -> score != -1.0) // Excluir valores iguales a -1.0
+                        .average()                        // Obtener el promedio
+                        .orElse(-1.0);
+                scoresResponseDTO.getMetricScores().add(metricScore);
+                metricScoresAux.add(metricScore);
+            }
+            scoresResponseDTO.getSectionScores().add(metricScoresAux.stream().mapToDouble(Double::doubleValue).filter(score -> score != -1.0).average().orElse(-1.0));
+        }
+
+        scoresResponseDTO.setGeneralScore(scoresResponseDTO.getSectionScores().stream().mapToDouble(Double::doubleValue).filter(score -> score != -1.0).average().orElse(-1.0));
+
+        return new ResponseHandler<>(200,"Se han obtenido los resultados exitosamente.","http://localhost:8080/measurement/calculateScores/{measurementId}",scoresResponseDTO).getResponse();
     }
 
 }

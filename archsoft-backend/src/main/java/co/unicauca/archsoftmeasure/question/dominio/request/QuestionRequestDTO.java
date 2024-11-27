@@ -15,4 +15,5 @@ import java.util.List;
 public class QuestionRequestDTO {
     private String statement;
     private List<AnswerRequestDTO> answers;
+    private List<Integer> metrics;
 }

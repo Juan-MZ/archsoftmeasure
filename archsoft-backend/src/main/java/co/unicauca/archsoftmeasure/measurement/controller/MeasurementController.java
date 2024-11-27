@@ -2,6 +2,7 @@ package co.unicauca.archsoftmeasure.measurement.controller;
 
 import co.unicauca.archsoftmeasure.measurement.dominio.request.MeasurementSendAnswersDTO;
 import co.unicauca.archsoftmeasure.measurement.dominio.response.MeasurementResponseDTO;
+import co.unicauca.archsoftmeasure.measurement.dominio.response.ScoresResponseDTO;
 import co.unicauca.archsoftmeasure.measurement.services.IMeasurementService;
 import co.unicauca.archsoftmeasure.util.response.Response;
 import org.springframework.web.bind.annotation.*;
@@ -22,7 +23,12 @@ public class MeasurementController {
     }
 
     @PatchMapping("/sendAnswersToMeasurement/{measurementId}")
-    public Response<MeasurementResponseDTO> sendAnswersToMeasurement(@PathVariable Integer measurementId, @RequestBody MeasurementSendAnswersDTO measurementRequestDTO) {
+    public Response<MeasurementResponseDTO> sendAnswersToMeasurement(@PathVariable final Integer measurementId, @RequestBody MeasurementSendAnswersDTO measurementRequestDTO) {
         return iMeasurementService.sendAnswersToMeasurement(measurementId, measurementRequestDTO);
+    }
+
+    @GetMapping("/calculateScores/{measurementId}")
+    public Response<ScoresResponseDTO> calculateScores(@PathVariable final Integer measurementId) {
+        return iMeasurementService.calculateScores(measurementId);
     }
 }

@@ -3,9 +3,13 @@ package co.unicauca.archsoftmeasure.test.services;
 import co.unicauca.archsoftmeasure.answer.dominio.request.AnswerRequestDTO;
 import co.unicauca.archsoftmeasure.answer.dominio.response.AnswerResponseDTO;
 import co.unicauca.archsoftmeasure.answer.model.Answer;
+import co.unicauca.archsoftmeasure.metric.model.Metric;
+import co.unicauca.archsoftmeasure.metric.repository.IMetricRepository;
 import co.unicauca.archsoftmeasure.question.dominio.request.QuestionRequestDTO;
 import co.unicauca.archsoftmeasure.question.dominio.response.QuestionResponseDTO;
 import co.unicauca.archsoftmeasure.question.model.Question;
+import co.unicauca.archsoftmeasure.scale.model.Scale;
+import co.unicauca.archsoftmeasure.scale.repository.IScaleRepository;
 import co.unicauca.archsoftmeasure.test.dominio.request.TestRequestDTO;
 import co.unicauca.archsoftmeasure.test.dominio.response.TestResponseDTO;
 import co.unicauca.archsoftmeasure.test.model.Test;
@@ -25,12 +29,16 @@ import java.util.stream.Collectors;
 @Service
 public class TestService implements ITestService {
     private final ITestRepository iTestRepository;
+    private final IScaleRepository iScaleRepository;
+    private final IMetricRepository iMetricRepository;
     private final ModelMapper modelMapper;
     private final ObjectMapper objectMapper;
 
 
-    public TestService(ITestRepository iTestRepository, ModelMapper modelMapper, ObjectMapper objectMapper) {
+    public TestService(ITestRepository iTestRepository, IScaleRepository iScaleRepository, IMetricRepository iMetricRepository, ModelMapper modelMapper, ObjectMapper objectMapper) {
         this.iTestRepository = iTestRepository;
+        this.iScaleRepository = iScaleRepository;
+        this.iMetricRepository = iMetricRepository;
         this.modelMapper = modelMapper;
         this.objectMapper = objectMapper;
     }
@@ -51,7 +59,30 @@ public class TestService implements ITestService {
                         Answer answer = new Answer();
                         answer.setStatement(questionRequestDTO.getAnswers().get(j).getStatement());
                         answer.setQuestion(question);
+                        List<Double> scales = questionRequestDTO.getAnswers().get(j).getMetricScaleValues();
+                        if(scales.size() != questionRequestDTO.getMetrics().size()) {
+                            throw new ServiceRuleException("scales.size.is.not.equals.to.metrics.size");
+                        }
+                        List<Scale> scaleList = new ArrayList<>();
+                        for(int k=0;k<scales.size();k++) {
+                            Optional<Metric> metricOptional = this.iMetricRepository.findById(questionRequestDTO.getMetrics().get(k));
+                            if (metricOptional.isEmpty()) {
+                                throw new ServiceRuleException("metric.is.not.found");
+                            }
+                            Optional<Scale> scaleOptional = iScaleRepository.findByPercentageAndMetric(scales.get(k), metricOptional.get());
+                            if(scaleOptional.isPresent()) {
+                                scaleList.add(scaleOptional.get());
+                            } else {
+                                Scale scale = new Scale();
+                                scale.setPercentage(scales.get(k));
+                                scale.setMetric(metricOptional.get());
+                                this.iScaleRepository.save(scale);
+                                scaleList.add(scale);
+                            }
+                        }
+                        answer.setScales(scaleList);
                         answers.add(answer);
+
                     }
                     question.setAnswers(answers);
                 } else {
