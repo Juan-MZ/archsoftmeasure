@@ -7,7 +7,7 @@ import { Observable } from 'rxjs'
 })
 export class ApiService {
   private urlApi = 'http://localhost:8080';
-  private components = ["/section","/test","/measurement"];
+  private components = ["/section","/test","/measurement","/metric"];
   constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
@@ -36,5 +36,15 @@ export class ApiService {
     }
     let methodExtension = "/sendAnswersToMeasurement"+"/"+measurementId.toString();
     return this.http.patch<any>(this.urlApi+this.components[2].toString()+methodExtension, body);
+  }
+
+  public getMeasurementsByMail(mail: string) {
+    let methodExtension = "/getMeasurementsByEmail"+"/"+mail;
+    return this.http.get<any>(this.urlApi+this.components[2].toString()+methodExtension);
+  }
+
+  public calculateScores(measurementId: any) : Observable<any> {
+    let methodExtension = "/calculateScores"+"/"+measurementId.toString();
+    return this.http.get<any>(this.urlApi+this.components[2].toString()+methodExtension);
   }
 }

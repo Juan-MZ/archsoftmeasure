@@ -1,7 +1,7 @@
 .test-container {
   max-width: 900px;
   /* Permitir que el contenido ocupe todo el alto disponible, con scroll interno */
-  max-height: 85vh; /* Limita el alto máximo del contenedor al 90% de la pantalla */
+  max-height: 85vh; /* Limita el alto máximo del contenedor al 85% de la pantalla */
   overflow-y: auto; /* Habilita el scroll vertical si el contenido es demasiado grande */
   margin: 2rem auto;
   padding: 1.5rem;

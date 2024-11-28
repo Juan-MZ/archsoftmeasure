@@ -127,4 +127,20 @@ public class MeasurementService implements IMeasurementService {
         return new ResponseHandler<>(200,"Se han obtenido los resultados exitosamente.","http://localhost:8080/measurement/calculateScores/{measurementId}",scoresResponseDTO).getResponse();
     }
 
+    @Override
+    public Response<List<MeasurementResponseDTO>> getMeasurementsByEmail(String mail) {
+        List<Measurement> measurements = this.iMeasurementRepository.findAllByMail(mail);
+        if(measurements.isEmpty()) {
+            throw new ServiceRuleException("measurements.are.not.found.by.mail");
+        }
+        List<MeasurementResponseDTO> measurementResponseDTOList = new ArrayList<>();
+        for(Measurement measurement : measurements) {
+            if (measurement.getFinalDateTime()!=null) {
+                measurementResponseDTOList.add(modelMapper.map(measurement, MeasurementResponseDTO.class));
+            }
+        }
+
+        return new ResponseHandler<>(200,"Se han obtenido las mediciones exitosamente.","http://localhost:8080/measurement/getMeasurementsByEmail/{mail}",measurementResponseDTOList).getResponse();
+    }
+
 }

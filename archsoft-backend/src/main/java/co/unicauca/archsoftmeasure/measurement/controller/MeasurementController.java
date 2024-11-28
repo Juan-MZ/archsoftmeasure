@@ -7,6 +7,8 @@ import co.unicauca.archsoftmeasure.measurement.services.IMeasurementService;
 import co.unicauca.archsoftmeasure.util.response.Response;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/measurement")
 @CrossOrigin(origins = "*", allowedHeaders = "*")
@@ -30,5 +32,10 @@ public class MeasurementController {
     @GetMapping("/calculateScores/{measurementId}")
     public Response<ScoresResponseDTO> calculateScores(@PathVariable final Integer measurementId) {
         return iMeasurementService.calculateScores(measurementId);
+    }
+
+    @GetMapping("/getMeasurementsByEmail/{mail}")
+    public Response<List<MeasurementResponseDTO>> getMeasurementsByEmail(@PathVariable String mail) {
+        return iMeasurementService.getMeasurementsByEmail(mail);
     }
 }

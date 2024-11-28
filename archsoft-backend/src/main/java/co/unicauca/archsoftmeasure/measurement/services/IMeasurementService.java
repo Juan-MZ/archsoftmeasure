@@ -6,8 +6,11 @@ import co.unicauca.archsoftmeasure.measurement.dominio.response.MeasurementRespo
 import co.unicauca.archsoftmeasure.measurement.dominio.response.ScoresResponseDTO;
 import co.unicauca.archsoftmeasure.util.response.Response;
 
+import java.util.List;
+
 public interface IMeasurementService {
     public Response<MeasurementResponseDTO> createMeasurement(String mail, Integer testId);
     public Response<MeasurementResponseDTO> sendAnswersToMeasurement(Integer measurementId, MeasurementSendAnswersDTO measurementRequestDTO);
     public Response<ScoresResponseDTO> calculateScores(Integer measurementId);
+    public Response<List<MeasurementResponseDTO>> getMeasurementsByEmail(String mail);
 }

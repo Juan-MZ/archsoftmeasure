@@ -1,0 +1,109 @@
+/* Estilos generales */
+.metric-container {
+  max-height: 100vh; /* Limita el alto máximo del contenedor al 90% de la pantalla */
+  max-width: 1200px;
+  overflow-y: auto; /* Habilita el scroll vertical si el contenido es demasiado grande */
+  margin: 20px auto;
+  padding: 20px;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Títulos */
+.metric-container h1 {
+  font-size: 2rem;
+  color: #0078d7;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.metric-container h2 {
+  font-size: 1.5rem;
+  color: #0056a4;
+  border-bottom: 2px solid #0056a4;
+  padding-bottom: 5px;
+  margin-bottom: 10px;
+}
+
+.metric-container h3 {
+  font-size: 1.2rem;
+  color: #444;
+  margin-top: 15px;
+  margin-bottom: 8px;
+}
+
+/* Listas */
+ul {
+  list-style-type: disc;
+  margin-left: 20px;
+  padding-left: 20px;
+}
+
+ul li {
+  margin-bottom: 5px;
+}
+
+/* Párrafos */
+.metric-container p {
+  margin: 5px 0 10px;
+}
+
+/* Tablas (si agregas alguna) */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 15px;
+}
+
+table th, table td {
+  padding: 10px;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+table th {
+  background-color: #0078d7;
+  color: #fff;
+}
+
+table tr:nth-child(even) {
+  background-color: #f2f2f2;
+}
+
+/* Secciones */
+section {
+  margin-bottom: 20px;
+  padding: 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fefefe;
+}
+
+section:nth-child(odd) {
+  background-color: #f8f8f8;
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .metric-container {
+    padding: 15px;
+  }
+
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.3rem;
+  }
+
+  h3 {
+    font-size: 1.1rem;
+  }
+
+  table th, table td {
+    font-size: 0.9rem;
+  }
+}

@@ -22,7 +22,7 @@ public class Answer {
     @Column(name = "answer_id")
     private Integer answerId;
 
-    @Column(name = "answer_statement", nullable = false)
+    @Column(name = "answer_statement", nullable = false, length = 1500)
     private String statement;
 
     @ManyToOne(fetch = FetchType.EAGER, cascade = CascadeType.ALL)

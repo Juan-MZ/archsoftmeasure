@@ -1,0 +1,45 @@
+<div class="measurements-container">
+  <h1>Resultados de Exámenes</h1>
+
+  <!-- Validación si hay datos o no -->
+  <div *ngIf="measurements.length > 0; else noData">
+    <ul>
+      <!-- Muestra las fechas de finalización y botón para seleccionar -->
+      <li *ngFor="let measurement of measurements">
+        <span> {{ measurement.finalDateTime || 'Sin fecha disponible' }} </span>
+        <button (click)="calculateScores(measurement.measurementId)">
+          Seleccionar
+        </button>
+      </li>
+    </ul>
+  </div>
+
+  <!-- Mensaje si no hay datos -->
+  <ng-template #noData>
+    <p>No hay resultados disponibles.</p>
+  </ng-template>
+</div>
+
+<!-- Modal para mostrar resultados -->
+<div class="modal-backdrop" *ngIf="modalVisible">
+  <div class="modal">
+    <h2>Resultados</h2>
+    <p><strong>Puntaje General:</strong> {{ Number(selectedMeasurementResults?.generalScore.toFixed(2)) }}</p>
+
+    <h3>Puntajes por Sección</h3>
+    <ul>
+      <li *ngFor="let score of selectedMeasurementResults?.sectionScores; index as i">
+        Sección {{ i + 1 }}: {{ Number(score.toFixed(2)) }}
+      </li>
+    </ul>
+
+    <h3>Puntajes por Métrica</h3>
+    <ul>
+      <li *ngFor="let metric of selectedMeasurementResults?.metricScores; index as i">
+        Métrica {{ i + 1 }}: {{ Number(metric.toFixed(2)) }}
+      </li>
+    </ul>
+
+    <button (click)="closeModal()">Cerrar</button>
+  </div>
+</div>

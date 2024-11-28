@@ -13,7 +13,7 @@ export class LandingComponent {
   constructor(private apiService: ApiService, private router: Router) {}
 
   // Método para redirigir
-  presentTest() {
-    this.router.navigate(['form']); // Navega a form
+  goTo(component: string) {
+    this.router.navigate([component]); // Navega a form
   }
 }

@@ -21,7 +21,7 @@ public class Question {
     @Column(name = "question_id")
     private Integer questionId;
 
-    @Column(name = "question_statement", nullable = false)
+    @Column(name = "question_statement", nullable = false, length = 1500)
     private String statement;
 
     @ManyToMany(mappedBy = "questions")
