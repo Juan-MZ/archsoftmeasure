@@ -6,23 +6,20 @@ import { Observable } from 'rxjs'
   providedIn: 'root'
 })
 export class ApiService {
-  private urlApi = 'http://localhost:8080';
+  private urlApi = 'https://atlantes.servehttp.com:8080/api';
+  //private urlApi = 'http://localhost:8080/api';
   private components = ["/section","/test","/measurement","/metric"];
   constructor(private http: HttpClient) { }
 
-  ngOnInit(): void {
-    this.getMetrics()
-  }
-
-  public getMetrics() : Observable<any> {
-    let methodExtension = "/getAllSections";
-    return this.http.get<any>(this.urlApi+this.components[0].toString()+methodExtension);
-  }
-
-  public createMeasurement(correo: string) : Observable<any> {
-    let methodExtension = "/createMeasurement"+"/"+correo+"/1";
+  public createMeasurement(correo: string, testId: number) : Observable<any> {
+    let methodExtension = "/createMeasurement"+"/"+correo+"/"+testId.toString();
     // @ts-ignore
     return this.http.post<any>(this.urlApi+this.components[2].toString()+methodExtension);
+  }
+
+  public getAllTests() : Observable<any> {
+    let methodExtension = "/getAllTests";
+    return this.http.get<any>(this.urlApi+this.components[1].toString()+methodExtension);
   }
 
   public getTest() : Observable<any> {

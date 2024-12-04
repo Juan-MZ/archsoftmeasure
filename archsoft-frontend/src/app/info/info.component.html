@@ -16,61 +16,80 @@
     <h2>1. Diseño arquitectónico y toma de decisiones técnicas</h2>
     <div>
       <h3>M1.1: Porcentaje de requisitos satisfechos</h3>
-      <p><strong>Fórmula:</strong> M1.1 = (Σ PR / T) * 100</p>
-      <p><strong>Contexto:</strong> Fase de diseño arquitectónico.</p>
-      <p><strong>Momento:</strong> Finalización de diseño o revisiones intermedias.</p>
+      <p><strong>Fórmula:</strong><br>
+        PR = porcentaje del requisito cubierto<br>
+        T = # de requisitos totales<br>
+        M1.1 = (PR1 + PR2 + ... + PRt / T) * 100
+      </p>
+      <p><strong>Contexto:</strong> Esta métrica debe aplicarse durante o inmediatamente después de la fase de diseño arquitectónico, una vez que se hayan definido los requisitos tanto funcionales como no funcionales.</p>
+      <p><strong>Punto de vista:</strong> Se debe evaluar desde la perspectiva del cliente y del equipo técnico para asegurar que los requisitos planteados han sido cubiertos adecuadamente.</p>
+      <p><strong>Momento de la medición:</strong> Finalización de la fase de diseño y validación de la arquitectura frente a los requisitos. También puede evaluarse en puntos de control durante el desarrollo para asegurar el cumplimiento continuo de los requisitos.</p>
+    </div>
+    <h3>M1.2: Toma de decisiones técnicas debidamente justificadas</h3>
+    <div>
+      <p><strong>Fórmula:</strong><br>
+        M1.2 = (# de decisiones técnicas debidamente justificadas / # total de decisiones establecidas) * 100
+      </p>
+      <p><strong>Contexto:</strong> Esta métrica se debe aplicar cada vez que se toma una decisión técnica importante que afecta la arquitectura general del sistema.</p>
+      <p><strong>Punto de vista:</strong> Desde la perspectiva del equipo técnico y de la gerencia del proyecto para verificar si las decisiones están alineadas con los objetivos del proyecto.</p>
+      <p><strong>Momento de la medición:</strong> Cada vez que se documenta una decisión técnica significativa o al final de la fase de diseño.</p>
+    </div>
+    <h3>M1.3: Identificación y elección de patrones arquitectónicos</h3>
+    <div>
+      <p><strong>Fórmula:</strong><br>
+        M1.3 = (# de patrones arquitectónicos correctos aplicados / # total de patrones considerados) * 100
+      </p>
+      <p><strong>Contexto:</strong> Se aplica cuando se han seleccionado y utilizado patrones de diseño arquitectónico durante la fase de diseño y toma de decisiones.</p>
+      <p><strong>Punto de vista:</strong> Evaluado por el equipo técnico y expertos en arquitectura para validar que los patrones seleccionados son los más adecuados para el problema en cuestión.</p>
+      <p><strong>Momento de la medición:</strong> Al finalizar el diseño arquitectónico y después de la implementación de los patrones.</p>
     </div>
 
-    <div>
-      <h3>M1.2: Toma de decisiones técnicas justificadas</h3>
-      <p><strong>Fórmula:</strong> M1.2 = (# decisiones justificadas / total decisiones) * 100</p>
-      <p><strong>Contexto:</strong> Cada decisión técnica importante.</p>
-      <p><strong>Momento:</strong> Documentación de decisiones.</p>
-    </div>
-
-    <div>
-      <h3>M1.3: Identificación y elección de patrones arquitectónicos</h3>
-      <p><strong>Fórmula:</strong> M1.3 = (# patrones correctos / total patrones) * 100</p>
-      <p><strong>Contexto:</strong> Selección de patrones durante diseño.</p>
-      <p><strong>Momento:</strong> Finalización del diseño.</p>
-    </div>
   </section>
 
   <section>
     <h2>2. Comunicación y documentación</h2>
     <div>
       <h3>M2.1: Calidad de documentación</h3>
-      <p><strong>Fórmula:</strong> M2.1 = 1 / (# observaciones + 1) * 100</p>
-      <p><strong>Contexto:</strong> Entrega de documentación.</p>
-      <p><strong>Momento:</strong> Antes de implementación.</p>
+      <p><strong>Fórmula:</strong><br>
+        M2.1 = 1 / (# de observaciones + 1) * 100
+      </p>
+      <p><strong>Contexto:</strong> Se aplica cuando el arquitecto ha entregado la documentación de la arquitectura a los interesados y equipos de desarrollo.</p>
+      <p><strong>Punto de vista:</strong> Evaluado por los stakeholders, equipo de desarrollo y otros actores relevantes que necesiten usar la documentación.</p>
+      <p><strong>Momento de la medición:</strong> Antes de la implementación y durante las revisiones documentales del proyecto.</p>
     </div>
 
     <div>
       <h3>M2.2: Efectividad en la comunicación</h3>
-      <p><strong>Fórmula:</strong> M2.2 = (# ideas comprendidas / total ideas) * 100</p>
-      <p><strong>Contexto:</strong> Reuniones con stakeholders.</p>
-      <p><strong>Momento:</strong> Posterior a presentaciones clave.</p>
+      <p><strong>Fórmula:</strong><br>
+        M2.2 = (# de ideas comprendidas correctamente / # total de ideas presentadas) * 100
+      </p>
+      <p><strong>Contexto:</strong> Se aplica en reuniones o sesiones donde el arquitecto presenta las ideas y decisiones arquitectónicas a los stakeholders.</p>
+      <p><strong>Punto de vista:</strong> Evaluado por los interesados, tanto técnicos como no técnicos, para medir la comprensión de las ideas arquitectónicas presentadas.</p>
+      <p><strong>Momento de la medición:</strong> Después de las reuniones o sesiones de comunicación clave.</p>
     </div>
   </section>
 
   <section>
     <h2>3. Liderazgo y colaboración</h2>
     <div>
-      <h3>M3.1: Satisfacción del equipo</h3>
-      <p><strong>Fórmulas:</strong></p>
-      <ul>
-        <li>M3.1.1: Satisfacción en soluciones técnicas</li>
-        <li>M3.1.2: Satisfacción en resolución de conflictos</li>
-      </ul>
-      <p><strong>Contexto:</strong> Intervenciones del arquitecto.</p>
-      <p><strong>Momento:</strong> Después de situaciones críticas.</p>
+      <h3>M3.1: Satisfacción del equipo sobre el liderazgo técnico del arquitecto</h3>
+      <p><strong>Fórmula:</strong><br>
+        M3.1.1 = (Ps1 + Ps2 + ... + Psx / # de integrantes que solicitaron soluciones)<br>
+        M3.1.2 = (Pc1 + Pc2 + ... + Pcx / # de integrantes que presentaron conflictos) * 100
+      </p>
+      <p><strong>Contexto:</strong> Esta métrica se aplica durante todo el ciclo de vida del proyecto, especialmente cuando el equipo necesita orientación técnica o cuando surgen conflictos relacionados con el diseño.</p>
+      <p><strong>Punto de vista:</strong> Evaluado por los miembros del equipo de desarrollo y otros actores involucrados en la implementación.</p>
+      <p><strong>Momento de la medición:</strong> Después de situaciones críticas que requirieron intervención del arquitecto (conflictos técnicos, decisiones difíciles).</p>
     </div>
 
     <div>
       <h3>M3.2: Porcentaje de objetivos arquitectónicos logrados</h3>
-      <p><strong>Fórmula:</strong> M3.2 = (# objetivos alcanzados / total objetivos) * 100</p>
-      <p><strong>Contexto:</strong> Implementación de arquitectura.</p>
-      <p><strong>Momento:</strong> Finalización de hitos importantes.</p>
+      <p><strong>Fórmula:</strong><br>
+        M3.2 = (# de objetivos alcanzados / Total de objetivos arquitectónicos planteados) * 100
+      </p>
+      <p><strong>Contexto:</strong> Se aplica después de la implementación de los componentes arquitectónicos clave del sistema.</p>
+      <p><strong>Punto de vista:</strong> Evaluado por el equipo técnico y la gerencia para verificar que los objetivos planificados han sido alcanzados.</p>
+      <p><strong>Momento de la medición:</strong> Al finalizar hitos importantes de la implementación arquitectónica.</p>
     </div>
   </section>
 
@@ -78,41 +97,60 @@
     <h2>4. Habilidades de resolución de problemas</h2>
     <div>
       <h3>M4.1: Tasa de resolución efectiva de problemas</h3>
-      <p><strong>Fórmula:</strong> M4.1 = (# problemas resueltos / total problemas) * 100</p>
-      <p><strong>Contexto:</strong> Implementación y operación.</p>
-      <p><strong>Momento:</strong> Después de resolución.</p>
+      <p><strong>Fórmula:</strong><br>
+        M4.1 = (# de problemas resueltos satisfactoriamente / # total de problemas reportados) * 100
+      </p>
+      <p><strong>Contexto:</strong> Se aplica cuando surgen problemas durante la implementación de la arquitectura o durante la operación del sistema.</p>
+      <p><strong>Punto de vista:</strong> Evaluado por el equipo de desarrollo y otros actores que estén afectados por los problemas resueltos.</p>
+      <p><strong>Momento de la medición:</strong> Después de la resolución de problemas.</p>
     </div>
 
     <div>
-      <h3>M4.2: Porcentaje de riesgos anticipados y mitigados</h3>
-      <p><strong>Fórmulas:</strong></p>
-      <ul>
-        <li>M4.2.1: (# riesgos anticipados / total riesgos) * 100</li>
-        <li>M4.2.2: (# riesgos mitigados / total riesgos) * 100</li>
-      </ul>
-      <p><strong>Contexto:</strong> Fase de diseño y planificación.</p>
-      <p><strong>Momento:</strong> Durante revisiones de riesgos.</p>
+      <h3>M4.2: Porcentaje de riesgos anticipados y mitigados antes de su impacto</h3>
+      <p><strong>Fórmula:</strong><br>
+        M4.2.1 = (# de riesgos anticipados / # total de riesgos) * 100<br>
+        M4.2.2 = (# de riesgos mitigados / # total de riesgos) * 100
+      </p>
+      <p><strong>Contexto:</strong> Se debe aplicar de manera proactiva durante la fase de diseño y planificación, antes de que los riesgos se conviertan en problemas.</p>
+      <p><strong>Punto de vista:</strong> Desde la perspectiva del arquitecto, la gerencia de proyecto y el equipo de desarrollo.</p>
+      <p><strong>Momento de la medición:</strong> Durante las revisiones de riesgos y en la fase de planificación de mitigación.</p>
+    </div>
+
+    <div>
+      <h3>M4.3: Calidad de las soluciones arquitectónicas aportadas</h3>
+      <p><strong>Fórmula:</strong><br>
+        Px = (((Crt1 * Crtp1) + (Crt2 * Crtp2) + ... + (CrtT * CrtpT)) / (T * 100))<br>
+        M4.3 = ((P1 + P2 + ... + Pn) / (n * 100))
+      </p>
+      <p><strong>Contexto:</strong> Esta métrica se aplica cuando el arquitecto propone soluciones arquitectónicas para resolver problemas específicos durante el diseño o la implementación del proyecto.</p>
+      <p><strong>Punto de vista:</strong> Evaluado por el equipo técnico y expertos en arquitectura para medir la efectividad de las soluciones aportadas en términos de modularidad, bajo acoplamiento, alta cohesión y claridad de diseño.</p>
+      <p><strong>Momento de la medición:</strong> Después de implementar una solución específica o en revisiones post-mortem de problemas resueltos.</p>
     </div>
   </section>
 
   <section>
     <h2>5. Adaptabilidad y aprendizaje continuo</h2>
     <div>
-      <h3>M5.1: Cambios arquitectónicos exitosamente integrados</h3>
-      <p><strong>Fórmula:</strong> M5.1 = (# cambios exitosos / total cambios) * 100</p>
-      <p><strong>Contexto:</strong> Cambios solicitados por el cliente.</p>
-      <p><strong>Momento:</strong> Post integración de cambios.</p>
+      <h3>M5.1: Porcentaje de cambios arquitectónicos exitosamente integrados</h3>
+      <p><strong>Fórmula:</strong><br>
+        M5.1 = (# de cambios integrados exitosamente / Total de cambios solicitados) * 100
+      </p>
+      <p><strong>Contexto:</strong> Se aplica cuando se requiere realizar cambios en la arquitectura debido a nuevas necesidades del cliente o cambios en los requisitos.</p>
+      <p><strong>Punto de vista:</strong> Evaluado por el equipo técnico y stakeholders que impulsaron los cambios.</p>
+      <p><strong>Momento de la medición:</strong> Después de la integración de los cambios solicitados y la validación de su éxito.</p>
     </div>
 
     <div>
-      <h3>M5.2: Adopción de nuevas tecnologías y prácticas</h3>
-      <p><strong>Fórmulas:</strong></p>
-      <ul>
-        <li>M5.2.1: (# tecnologías implementadas / total tecnologías) * 100</li>
-        <li>M5.2.2: (# prácticas adoptadas / total prácticas) * 100</li>
-      </ul>
-      <p><strong>Contexto:</strong> Adopción tecnológica.</p>
-      <p><strong>Momento:</strong> Final de ciclos de adopción.</p>
+      <h3>M5.2: Tasa de adopción de nuevas tecnologías y prácticas arquitectónicas</h3>
+      <p><strong>Fórmula:</strong><br>
+        A = #  de nuevas tecnologías implementadas correctamente justificadas <br>
+        M5.2.1 = (A / # de tecnologías establecidas) * 100<br>
+        B = #  de nuevas prácticas implementadas correctamente justificadas <br>
+        M5.2.2 = (B / # de tecnologías establecidas) * 100
+      </p>
+      <p><strong>Contexto:</strong> Se aplica cuando el arquitecto implementa nuevas tecnologías o prácticas en el proyecto.</p>
+      <p><strong>Punto de vista:</strong> Evaluado por el equipo técnico y la gerencia del proyecto.</p>
+      <p><strong>Momento de la medición:</strong> Después de la implementación de nuevas tecnologías o al final de un ciclo de adopción tecnológica.</p>
     </div>
   </section>
 </div>

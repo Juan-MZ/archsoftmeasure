@@ -1,0 +1,16 @@
+chat:
+  start: "Serás teletransportado pronto!"
+  end: "Ubicación encontrada después de %tries% intento(s)"
+  cooldown: "&cTienes cooldown! Porfavor espera %cooldown% segundos!"
+  movetimer:
+    cancelled: "&cTe has movido! RTP cancelado!"
+    remaining: "&cSerás teletransportado en %time%s! Si te mueves se cancelará el proceso!"
+    already: "&Ya estás esperando a ser teletransportado!"
+  blacklisted: "&cNo puedes usar este comando en esta dimensión!"
+titles:
+  start:
+    title: "&2Serás teletransportado!"
+    sub: ""
+  end:
+    title: "&2Ubicación encontrada"
+    sub: "&6Después de %tries% intento(s)"

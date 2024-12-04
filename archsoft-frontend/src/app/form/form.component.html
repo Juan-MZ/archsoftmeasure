@@ -5,8 +5,36 @@
       <label for="email">Correo Electrónico:</label>
       <input id="emailInput" type="email" [(ngModel)]="email" id="email" name="email" placeholder="Ingrese su correo" required>
     </div>
+
     <div class="form-actions">
-      <button type="submit" (click)="createMeasurement()">Enviar</button>
+      <button type="submit" (click)="getTests()">Enviar</button>
     </div>
   </form>
+</div>
+
+<div class="modal-backdrop" *ngIf="modalVisible">
+  <div class = "modal">
+    <h1>Exámenes</h1>
+
+    <!-- Validación si hay datos o no -->
+    <div *ngIf="tests.length > 0; else noData">
+      <ul>
+        <!-- Muestra los nombres de los tests y botón para seleccionar -->
+        <li *ngFor="let test of tests">
+          <span> {{ test.name || 'Sin nombre disponible' }} </span>
+          <button (click)="createMeasurement(test.testId)">
+            Seleccionar
+          </button>
+        </li>
+      </ul>
+    </div>
+
+    <button (click)="closeModal()">Cerrar</button>
+
+    <!-- Mensaje si no hay datos -->
+    <ng-template #noData>
+      <p>No hay resultados disponibles.</p>
+    </ng-template>
+  </div>
+
 </div>

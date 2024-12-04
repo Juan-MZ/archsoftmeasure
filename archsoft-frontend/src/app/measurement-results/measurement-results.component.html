@@ -14,6 +14,10 @@
     </ul>
   </div>
 
+  <button (click)="landing()" >
+    Salir
+  </button>
+
   <!-- Mensaje si no hay datos -->
   <ng-template #noData>
     <p>No hay resultados disponibles.</p>
@@ -29,14 +33,16 @@
     <h3>Puntajes por Sección</h3>
     <ul>
       <li *ngFor="let score of selectedMeasurementResults?.sectionScores; index as i">
-        Sección {{ i + 1 }}: {{ Number(score.toFixed(2)) }}
+        <span *ngIf="score > -1.0">
+          {{selectedMeasurementResults?.sections[i].toString()}}: {{ Number(score.toFixed(2)) }}
+        </span>
       </li>
     </ul>
 
     <h3>Puntajes por Métrica</h3>
     <ul>
       <li *ngFor="let metric of selectedMeasurementResults?.metricScores; index as i">
-        Métrica {{ i + 1 }}: {{ Number(metric.toFixed(2)) }}
+        {{ selectedMeasurementResults?.metrics[i].toString()}}: {{ Number(metric.toFixed(2)) }}
       </li>
     </ul>
 

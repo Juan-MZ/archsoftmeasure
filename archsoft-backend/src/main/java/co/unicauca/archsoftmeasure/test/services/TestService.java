@@ -12,6 +12,7 @@ import co.unicauca.archsoftmeasure.scale.model.Scale;
 import co.unicauca.archsoftmeasure.scale.repository.IScaleRepository;
 import co.unicauca.archsoftmeasure.test.dominio.request.TestRequestDTO;
 import co.unicauca.archsoftmeasure.test.dominio.response.TestResponseDTO;
+import co.unicauca.archsoftmeasure.test.dominio.response.TestSimpleResponseDTO;
 import co.unicauca.archsoftmeasure.test.model.Test;
 import co.unicauca.archsoftmeasure.test.repository.ITestRepository;
 import co.unicauca.archsoftmeasure.util.exception.ServiceRuleException;
@@ -121,5 +122,13 @@ public class TestService implements ITestService {
         testResponseDTO.setQuestions(questionResponseDTOList);
 
         return new ResponseHandler<>(200,"Examen encontrado con éxito.","http://localhost:8080/test/getTest/{id}",testResponseDTO).getResponse();
+    }
+
+    @Override
+    public Response<List<TestSimpleResponseDTO>> getAllTests() {
+        List<Test> tests = iTestRepository.findAll();
+        List<TestSimpleResponseDTO> testResponseDTOList = tests.stream().map(test -> modelMapper.map(test, TestSimpleResponseDTO.class)).toList();
+
+        return new ResponseHandler<>(200,"Se han encontrado los test con éxito.","http://localhost:8080/test/getAllTests",testResponseDTOList).getResponse();
     }
 }

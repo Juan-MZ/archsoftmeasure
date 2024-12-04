@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {NgForOf, NgIf} from '@angular/common';
-import { ActivatedRoute } from '@angular/router'
+import { ActivatedRoute, Router } from '@angular/router'
 import {ApiService} from '../service/api.service';
 
 @Component({
@@ -17,7 +17,7 @@ export class MeasurementResultsComponent implements OnInit {
   selectedMeasurementResults: any = null; // Guarda los resultados seleccionados
   modalVisible: boolean = false; // Controla la visibilidad del modal
 
-  constructor(private apiService: ApiService, private route: ActivatedRoute) {
+  constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -46,6 +46,10 @@ export class MeasurementResultsComponent implements OnInit {
         console.error("Error al crear la medición:", error);
       }
     );
+  }
+
+  landing(): void {
+    this.router.navigate(['']);
   }
 
   // Cierra el modal

@@ -14,5 +14,7 @@ import java.util.List;
 public class ScoresResponseDTO {
     private Double generalScore;
     private List<Double> sectionScores;
+    private List<String> sections;
     private List<Double> metricScores;
+    private List<String> metrics;
 }

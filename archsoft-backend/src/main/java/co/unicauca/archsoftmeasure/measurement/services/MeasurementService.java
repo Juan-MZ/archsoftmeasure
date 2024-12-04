@@ -101,6 +101,8 @@ public class MeasurementService implements IMeasurementService {
         ScoresResponseDTO scoresResponseDTO = new ScoresResponseDTO();
         scoresResponseDTO.setMetricScores(new ArrayList<>());
         scoresResponseDTO.setSectionScores(new ArrayList<>());
+        scoresResponseDTO.setMetrics(new ArrayList<>());
+        scoresResponseDTO.setSections(new ArrayList<>());
         List<Section> sections = this.iSectionRepository.findAll();
 
         for(Section section : sections) {
@@ -117,8 +119,10 @@ public class MeasurementService implements IMeasurementService {
                         .average()                        // Obtener el promedio
                         .orElse(-1.0);
                 scoresResponseDTO.getMetricScores().add(metricScore);
+                scoresResponseDTO.getMetrics().add(metric.getName());
                 metricScoresAux.add(metricScore);
             }
+            scoresResponseDTO.getSections().add(section.getName());
             scoresResponseDTO.getSectionScores().add(metricScoresAux.stream().mapToDouble(Double::doubleValue).filter(score -> score != -1.0).average().orElse(-1.0));
         }
 

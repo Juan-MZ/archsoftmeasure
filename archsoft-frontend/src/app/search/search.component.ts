@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {ApiService} from '../service/api.service';
 import { Router } from '@angular/router';
+import {NgForOf, NgIf} from '@angular/common';
 
 @Component({
   selector: 'app-search',
@@ -25,11 +26,11 @@ export class SearchComponent {
           });
         },
         (error) => {
-          console.error("Error al crear la medición:", error);
+          alert(JSON.stringify(error.error.data.error));
         }
       );
     } else {
-      console.error("Correo inválido");
+      alert("Correo inválido");
     }
   }
 

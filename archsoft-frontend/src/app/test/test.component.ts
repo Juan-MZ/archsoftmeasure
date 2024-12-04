@@ -19,6 +19,7 @@ export class TestComponent implements OnInit {
   selectedAnswers: { [key: number]: number | null } = {};
   email: any;
   measurementId: any;
+  modalVisibility: boolean = false;
 
   constructor(private apiService: ApiService, private route: ActivatedRoute, private router: Router) {}
 

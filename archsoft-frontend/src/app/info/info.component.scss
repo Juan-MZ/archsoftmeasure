@@ -85,6 +85,10 @@ section:nth-child(odd) {
   background-color: #f8f8f8;
 }
 
+p {
+  text-align: justify;
+}
+
 /* Responsividad */
 @media (max-width: 768px) {
   .metric-container {
